@@ -1,6 +1,7 @@
 package com.everis.curso.service.impl;
 
 import com.everis.curso.dao.DAOPromocionProductoInterface;
+import com.everis.curso.model.Promocion;
 import com.everis.curso.model.PromocionProducto;
 import com.everis.curso.service.BSDPromocionProdInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,16 @@ public class BSDPromocionProd implements BSDPromocionProdInterface {
     @Override
     public void eliminarPromocionProd(Integer id) {
         daoPromocionProd.deleteById(id);
+    }
+
+    @Override
+    public void eliminarPromocion(Integer id) {
+        Promocion prom = new Promocion();
+        prom.setIdPromocion(id);
+
+        List <PromocionProducto> lista = daoPromocionProd.findByPromocionEquals(prom);
+        lista.forEach(promoc -> {
+            daoPromocionProd.deleteById(promoc.getIdPP());
+        });
     }
 }

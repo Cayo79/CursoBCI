@@ -19,6 +19,11 @@ public class RestProductoController {
         return bsdProducto.listarProducto();
     }
 
+    @GetMapping("/nombre")
+    public List<Producto> listarNombre(@RequestParam(name="name", required=false, defaultValue ="Mundo") String name){
+        return bsdProducto.listarProductoNombre(name);
+    }
+
     @PostMapping
     public Producto crear (@RequestBody Producto producto) {
         return bsdProducto.crearProducto(producto);

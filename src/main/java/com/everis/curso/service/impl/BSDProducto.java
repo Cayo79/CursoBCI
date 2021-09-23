@@ -19,6 +19,11 @@ public class BSDProducto implements BSDProductoInterface {
     }
 
     @Override
+    public List<Producto> listarProductoNombre(String nombre) {
+        return daoProducto.findByNombreContains(nombre);
+    }
+
+    @Override
     public Producto crearProducto(Producto producto) {
         return daoProducto.save(producto);
     }

@@ -38,4 +38,9 @@ public class RestPromocionController {
     public PromocionProducto crearPP (@RequestBody PromocionProducto promocionProd) {
         return bsdPromocionProd.crearPromocionProd(promocionProd);
     }
+
+    @GetMapping("/eliminar/{id}")
+    public void eliminarPromocion(@PathVariable Integer id){
+        bsdPromocionProd.eliminarPromocion(id);
+    }
 }
