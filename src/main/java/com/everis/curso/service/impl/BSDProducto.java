@@ -3,7 +3,12 @@ package com.everis.curso.service.impl;
 import com.everis.curso.dao.DAOProductoInterface;
 import com.everis.curso.model.Producto;
 import com.everis.curso.service.BSDProductoInterface;
+import net.bytebuddy.TypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +21,16 @@ public class BSDProducto implements BSDProductoInterface {
     @Override
     public List<Producto> listarProducto() {
         return daoProducto.findAll();
+    }
+
+    @Override
+    public Page<Producto> listarProductoDesc(Integer pageNumber) {
+
+        // pageNumero es el numero de la pagina empezando desde 0
+        // 4 es la cantidad de Registros
+        // Sor.by es el ordenamiento ASC y DESC luego el nombre del Campo
+        Pageable pageable = PageRequest.of(pageNumber.intValue(), 4, Sort.by(Sort.Direction.DESC, "idProducto"));
+        return daoProducto.findAll(pageable);
     }
 
     @Override
