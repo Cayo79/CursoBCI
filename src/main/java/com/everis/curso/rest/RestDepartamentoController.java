@@ -29,4 +29,9 @@ public class RestDepartamentoController {
     public Departamento crear (@RequestBody Departamento departamento) {
         return bsdDepartamento.crearDepartamento(departamento);
     }
+
+    @DeleteMapping("borrar/{id}")
+    public void eliminar(@PathVariable Integer id) {
+        bsdDepartamento.eliminarDepartamento(id);
+    }
 }

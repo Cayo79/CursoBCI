@@ -2,8 +2,8 @@ package com.everis.curso.service.impl;
 
 import com.everis.curso.dao.DAOProductoInterface;
 import com.everis.curso.model.Producto;
+import com.everis.curso.model.SPConsulta;
 import com.everis.curso.service.BSDProductoInterface;
-import net.bytebuddy.TypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
 import java.util.List;
 
 @Service
@@ -18,9 +20,17 @@ public class BSDProducto implements BSDProductoInterface {
     @Autowired
     private DAOProductoInterface daoProducto;
 
+    @Autowired
+    private EntityManager entityManager;
+
     @Override
     public List<Producto> listarProducto() {
-        return daoProducto.findAll();
+        return daoProducto.findAll(Sort.by(Sort.Direction.ASC, "cantidad"));
+    }
+
+    @Override
+    public List<Producto> listarEstatusProducto(Boolean sts) {
+        return daoProducto.findByEstatusEquals(sts);
     }
 
     @Override
@@ -47,4 +57,15 @@ public class BSDProducto implements BSDProductoInterface {
     public void eliminarProducto(Integer id) {
         daoProducto.deleteById(id);
     }
+
+    @Override
+    public List<SPConsulta> buscarConsulta(Integer id) {
+        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("SP_Producto");
+        storedProcedureQuery.setParameter("vId", id);
+        storedProcedureQuery.execute();
+
+        return storedProcedureQuery.getResultList();
+    }
+
+
 }

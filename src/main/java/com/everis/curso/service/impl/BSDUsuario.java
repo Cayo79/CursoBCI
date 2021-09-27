@@ -6,11 +6,18 @@ import com.everis.curso.service.BSDUsuarioInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BSDUsuario implements BSDUsuarioInterface {
 
     @Autowired
     DAOUsuarioInterface daoUsuario;
+
+    @Override
+    public List<Usuario> listar() {
+        return daoUsuario.findAll();
+    }
 
     @Override
     public Usuario crearUsuario(Usuario usuario) {

@@ -23,4 +23,9 @@ public class RestEmpleadoController {
     public Empleado crear (@RequestBody Empleado empleado) {
         return bsdEmpleado.crearEmpleado(empleado);
     }
+
+    @DeleteMapping("borrar/{id}")
+    public void eliminar(@PathVariable Integer id) {
+        bsdEmpleado.eliminarEmpleado(id);
+    }
 }

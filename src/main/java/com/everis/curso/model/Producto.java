@@ -2,11 +2,7 @@ package com.everis.curso.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -21,6 +17,8 @@ public class Producto implements Serializable {
     private String nombre;
     private String descripcion;
     private Integer cantidad;
+    @Column(name = "status", columnDefinition = "boolean default true")
+    private Boolean estatus;
 
     public int getIdProducto() {
         return idProducto;
@@ -52,5 +50,13 @@ public class Producto implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Boolean getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Boolean estatus) {
+        this.estatus = estatus;
     }
 }

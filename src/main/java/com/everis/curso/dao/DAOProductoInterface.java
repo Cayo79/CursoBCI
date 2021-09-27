@@ -10,4 +10,5 @@ public interface DAOProductoInterface extends JpaRepository<Producto, Integer> {
     List<Producto> findByNombreEquals(String nombre);
     List<Producto> findByNombreLike (String nombre);
     List<Producto> findByNombreContains(String nombre);
+    List<Producto> findByEstatusEquals(Boolean sts);
 }
