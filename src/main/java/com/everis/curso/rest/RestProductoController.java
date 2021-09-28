@@ -2,6 +2,7 @@ package com.everis.curso.rest;
 
 import com.everis.curso.model.Producto;
 import com.everis.curso.model.SPConsulta;
+import com.everis.curso.model.SPConsultaNombre;
 import com.everis.curso.service.BSDProductoInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -41,6 +42,11 @@ public class RestProductoController {
     @GetMapping("/consulta/{id}")
     public List<SPConsulta> buscar(@PathVariable Integer id){
         return bsdProducto.buscarConsulta(id);
+    }
+
+    @GetMapping("/consultanombre/{name}")
+    public List<SPConsultaNombre> buscarNombre(@PathVariable String name){
+        return bsdProducto.buscarNombre(name);
     }
 
     @DeleteMapping("borrar/{id}")
