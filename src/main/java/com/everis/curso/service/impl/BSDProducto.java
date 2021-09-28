@@ -76,7 +76,6 @@ public class BSDProducto implements BSDProductoInterface {
     @Override
     public List<SPConsultaNombre> buscarNombre(String name) {
         List<SPConsultaNombre> lista = new ArrayList<>();
-        List<Object> salida = new ArrayList<>();
         lista = daospConsultaNombre.procedureName(name);
         return lista;
     }
