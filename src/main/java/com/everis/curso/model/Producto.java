@@ -20,6 +20,8 @@ public class Producto implements Serializable {
     @Column(name = "status", columnDefinition = "boolean default true")
     private Boolean estatus;
 
+    private Integer precio;
+
     public int getIdProducto() {
         return idProducto;
     }
@@ -58,5 +60,13 @@ public class Producto implements Serializable {
 
     public void setEstatus(Boolean estatus) {
         this.estatus = estatus;
+    }
+
+    public Integer getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Integer precio) {
+        this.precio = precio;
     }
 }

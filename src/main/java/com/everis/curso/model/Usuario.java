@@ -1,8 +1,8 @@
 package com.everis.curso.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -10,12 +10,14 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = -5472898252088073007L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int idUsuario;
 
     @Column(name = "login", length = 12)
     private String nombre;
 
-    @Column(length = 50)
+    @Column(length = 255)
     private String clave;
 
     public int getIdUsuario() {
