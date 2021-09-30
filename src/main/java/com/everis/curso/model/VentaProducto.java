@@ -1,10 +1,8 @@
 package com.everis.curso.model;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.jpa.repository.query.Procedure;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 
 @Entity
@@ -24,9 +22,9 @@ public class VentaProducto implements Serializable {
     @JoinColumn(name="idProducto")
     private Producto producto;
 
-    private Integer precioUnitario;
-    private Integer precioTotal;
-    private Integer cantidad;
+    private Integer precioUnitario = 0;
+    private Integer precioTotal = 0;
+    private Integer cantidad = 0;
 
     public int getIdVentaProducto() {
         return idVentaProducto;
