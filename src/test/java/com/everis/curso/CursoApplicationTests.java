@@ -2,11 +2,14 @@ package com.everis.curso;
 
 import com.everis.curso.model.Departamento;
 import com.everis.curso.model.Empleado;
+import com.everis.curso.model.Usuario;
 import com.everis.curso.service.BSDDepartamentoInterface;
 import com.everis.curso.service.BSDEmpleadoInterface;
+import com.everis.curso.service.BSDUsuarioInterface;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,10 +22,16 @@ class CursoApplicationTests {
     @Autowired
     BSDEmpleadoInterface bsdEmpleado;
 
+    @Autowired
+    BSDUsuarioInterface bsdUsuario;
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+
     @Test
     void contextLoads() {
     }
-
+/*
     @Test
     void crearDepartamento(){
         Departamento dep = new Departamento();
@@ -46,5 +55,25 @@ class CursoApplicationTests {
 
         Empleado newEmp = bsdEmpleado.crearEmpleado(emp);
         assertTrue(emp.getRut().equals(newEmp.getRut()));
+    }
+
+    @Test
+    void crearUsuarioCodificado(){
+        Usuario usr = new Usuario();
+        usr.setNombre("codificado");
+        usr.setClave(passwordEncoder.encode("123"));
+
+        Usuario newUsr = bsdUsuario.crearUsuario(usr);
+        assertTrue((usr.getNombre().equals(newUsr.getNombre())));
+    }
+*/
+    @Test
+    void crearUsuarioCodificado2(){
+        Usuario usr = new Usuario();
+        usr.setNombre("codex");
+        usr.setClave(passwordEncoder.encode("123"));
+
+        Usuario newUsr = bsdUsuario.crearUsuario(usr);
+        assertTrue((usr.getNombre().equals(newUsr.getNombre())));
     }
 }

@@ -4,4 +4,6 @@ import com.everis.curso.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DAOUsuarioInterface extends JpaRepository<Usuario, Integer> {
+
+    Usuario findByNombreEquals(String nombre);
 }
