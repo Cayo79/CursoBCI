@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Usuario implements Serializable {
@@ -19,6 +21,21 @@ public class Usuario implements Serializable {
 
     @Column(length = 255)
     private String clave;
+
+    private String correo;
+
+    @Column(name = "enabled", columnDefinition = "boolean default true")
+    private Boolean enabled;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastPasswordResetDate;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USUARIO_ROL",
+            joinColumns = {@JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")},
+            inverseJoinColumns = {@JoinColumn(name = "idRol", referencedColumnName = "idRol")})
+    private List<Rol> roles;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -42,5 +59,37 @@ public class Usuario implements Serializable {
 
     public void setClave(String clave) {
         this.clave = clave;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Date getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
+
+    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }

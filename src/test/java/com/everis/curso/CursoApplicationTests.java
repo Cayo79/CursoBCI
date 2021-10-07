@@ -1,10 +1,10 @@
 package com.everis.curso;
 
-import com.everis.curso.model.Departamento;
-import com.everis.curso.model.Empleado;
-import com.everis.curso.model.Usuario;
+import com.everis.curso.model.Rol;
+import com.everis.curso.model.RolNombre;
 import com.everis.curso.service.BSDDepartamentoInterface;
 import com.everis.curso.service.BSDEmpleadoInterface;
+import com.everis.curso.service.BSDRolInterface;
 import com.everis.curso.service.BSDUsuarioInterface;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,9 @@ class CursoApplicationTests {
 
     @Autowired
     BSDUsuarioInterface bsdUsuario;
+
+    @Autowired
+    BSDRolInterface bsdRol;
 
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
@@ -66,7 +69,7 @@ class CursoApplicationTests {
         Usuario newUsr = bsdUsuario.crearUsuario(usr);
         assertTrue((usr.getNombre().equals(newUsr.getNombre())));
     }
-*/
+
     @Test
     void crearUsuarioCodificado2(){
         Usuario usr = new Usuario();
@@ -75,5 +78,23 @@ class CursoApplicationTests {
 
         Usuario newUsr = bsdUsuario.crearUsuario(usr);
         assertTrue((usr.getNombre().equals(newUsr.getNombre())));
+    }
+*/
+    @Test
+    void crearRolesUser(){
+        Rol rol = new Rol();
+        rol.setNombre(RolNombre.ROLE_USER);
+
+        Rol newRol = bsdRol.crearRol(rol);
+        assertTrue((rol.getNombre().equals(newRol.getNombre())));
+    }
+
+    @Test
+    void crearRolesAdmin(){
+        Rol rol = new Rol();
+        rol.setNombre(RolNombre.ROLE_ADMIN);
+
+        Rol newRol = bsdRol.crearRol(rol);
+        assertTrue((rol.getNombre().equals(newRol.getNombre())));
     }
 }
