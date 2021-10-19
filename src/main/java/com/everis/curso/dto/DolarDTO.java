@@ -1,13 +1,18 @@
 package com.everis.curso.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DolarDTO {
 
     private String version;
     private String autor;
     private String codigo;
     private String nombre;
+    @SerializedName("unidad_medida")
     private String unidadMedida;
     private List<SerieDTO> serie;
 
