@@ -3,12 +3,10 @@ package com.everis.curso.controller;
 import com.everis.curso.repository.EjemploLombok;
 import com.everis.curso.repository.PersonaRepo;
 import com.everis.curso.service.PersonaInterface;
-import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sun.dc.path.PathError;
 
 @Controller
 public class Bienvenida {
