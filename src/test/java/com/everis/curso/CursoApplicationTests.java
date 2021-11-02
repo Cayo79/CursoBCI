@@ -1,7 +1,6 @@
 package com.everis.curso;
 
-import com.everis.curso.model.Rol;
-import com.everis.curso.model.RolNombre;
+import com.everis.curso.model.*;
 import com.everis.curso.service.BSDDepartamentoInterface;
 import com.everis.curso.service.BSDEmpleadoInterface;
 import com.everis.curso.service.BSDRolInterface;
@@ -34,7 +33,7 @@ class CursoApplicationTests {
     @Test
     void contextLoads() {
     }
-/*
+
     @Test
     void crearDepartamento(){
         Departamento dep = new Departamento();
@@ -79,7 +78,7 @@ class CursoApplicationTests {
         Usuario newUsr = bsdUsuario.crearUsuario(usr);
         assertTrue((usr.getNombre().equals(newUsr.getNombre())));
     }
-*/
+
     @Test
     void crearRolesUser(){
         Rol rol = new Rol();
