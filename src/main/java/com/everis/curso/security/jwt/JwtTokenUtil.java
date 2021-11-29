@@ -17,9 +17,8 @@ import java.util.Map;
 public class JwtTokenUtil implements Serializable {
     private static final long serialVersionUID = -7172335370249700560L;
 
-    static final String CLAIM_KEY_USERNAME = "usuario";
+    static final String CLAIM_KEY_USERNAME = "sub";
     static final String CLAIM_KEY_ROLES = "roles";
-    static final String CLAIM_KEY_AUDIENCE = "audience";
     static final String CLAIM_KEY_CREATED = "created";
 
     @Value("${jwt.secret}")
@@ -59,17 +58,6 @@ public class JwtTokenUtil implements Serializable {
             expiration = null;
         }
         return expiration;
-    }
-
-    public String getAudienceFromToken(String token) {
-        String audience;
-        try {
-            final Claims claims = getClaimsFromToken(token);
-            audience = (String) claims.get(CLAIM_KEY_AUDIENCE);
-        } catch (Exception e) {
-            audience = null;
-        }
-        return audience;
     }
 
     private Claims getClaimsFromToken(String token) {

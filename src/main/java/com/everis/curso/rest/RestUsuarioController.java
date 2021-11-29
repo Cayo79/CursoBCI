@@ -1,6 +1,5 @@
 package com.everis.curso.rest;
 
-import com.everis.curso.dao.DAOUsuarioInterface;
 import com.everis.curso.model.Usuario;
 import com.everis.curso.service.BSDUsuarioInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/usuario")
 public class RestUsuarioController {
